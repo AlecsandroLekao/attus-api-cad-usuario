@@ -34,7 +34,7 @@ public class PessoaController {
     }
 
     @PatchMapping
-    ResponseEntity<Pessoa> atualizaParcial(@Valid @RequestBody Pessoa pessoa, String id){
+    ResponseEntity<Pessoa> atualizaParcial(@Valid @RequestBody Pessoa pessoa, @PathVariable(value = "id") String id){
         return ResponseEntity.status(HttpStatus.CREATED).body(pessoaService.updatePessoa(id, pessoa));
     }
 

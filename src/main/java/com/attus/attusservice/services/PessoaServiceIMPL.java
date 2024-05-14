@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import static java.util.Objects.isNull;
+
 @Service
 public class PessoaServiceIMPL implements PessoaService {
 
@@ -36,9 +38,15 @@ public class PessoaServiceIMPL implements PessoaService {
     public Pessoa updatePessoa(String id, Pessoa pessoa) {
         Pessoa p = getbyId(id);
 
-
-
-        p.setEndereco(pessoa.getEndereco());
+        if(!isNull(pessoa.getNomeCompleto()) ){
+            p.setNomeCompleto(pessoa.getNomeCompleto());
+        }
+        if(!isNull(pessoa.getEndereco()) ){
+            p.setEndereco(pessoa.getEndereco());
+        }
+        if(!isNull(pessoa.getDataNascimento()) ){
+            p.setDataNascimento(pessoa.getDataNascimento());
+        }
         return repository.save(p);
     }
 
